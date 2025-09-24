@@ -7,14 +7,12 @@ window.addEventListener('load', function() {
         var clave = document.getElementById("Clave").value;
         var rclave = document.getElementById("RClave").value;
 
-        // Validar campos vacíos
         if (ncontrol === '' || email === '' || clave === '' || rclave === '') {
             e.preventDefault();
             alert("Todos los campos son obligatorios");
             return;
         }
 
-        // Validar correo electrónico
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             e.preventDefault();
@@ -22,7 +20,6 @@ window.addEventListener('load', function() {
             return;
         }
 
-        // Validar contraseñas iguales
         if (clave !== rclave) {
             e.preventDefault();
             alert("Las contraseñas no coinciden");

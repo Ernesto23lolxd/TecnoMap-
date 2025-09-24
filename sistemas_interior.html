@@ -147,6 +147,25 @@
         #modal-schedule tr:hover {
             background-color: rgba(90, 2, 2, 0.2);
         }
+
+        .exit-button {
+            display: block;
+            width: 120px;
+            margin: 40px auto 20px auto;
+            padding: 12px 20px;
+            background-color: #5a0202;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid white;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .exit-button:hover {
+            background-color: white;
+            color: #5a0202;
+        }
     </style>
 </head>
 <body>
@@ -193,8 +212,9 @@
         </div>
     </div>
 
+    <a href="index.html" class="exit-button">Salir</a>
+
     <script>
-        // --- BASE DE DATOS DE HORARIOS (EXTENDIDA) ---
         const classSchedules = {
             'SC-01': [
                 { time: '07:00-08:00', name: 'Cálculo Diferencial', teacher: 'Dr. Juan Pérez' },

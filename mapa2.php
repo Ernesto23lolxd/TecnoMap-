@@ -307,7 +307,6 @@
                 
                 <div class="floor-plan">
                     <div class="classrooms-left" id="classroomsLeft">
-                        <!-- Salones izquierda generados por JS -->
                     </div>
                     
                     <div class="stairs">
@@ -315,7 +314,6 @@
                     </div>
                     
                     <div class="classrooms-right" id="classroomsRight">
-                        <!-- Salones derecha generados por JS -->
                     </div>
                 </div>
                 
@@ -333,7 +331,6 @@
             </div>
             
             <div class="buildings-list" id="buildingsList">
-                <!-- Lista de edificios generada por JS -->
             </div>
         </div>
     </div>
@@ -343,7 +340,6 @@
     </footer>
 
     <script>
-        // Datos de ejemplo para los edificios y salones
         const campusData = {
             buildings: [
                 {
@@ -391,7 +387,6 @@
             ]
         };
 
-        // Datos de ejemplo para las clases
         const classData = {
             "sc": [
                 { room: "SC-101", className: "Sistemas Operativos", teacher: "Dr. Rodríguez" },
@@ -446,7 +441,6 @@
             ]
         };
 
-        // Elementos DOM
         const buildingsList = document.getElementById('buildingsList');
         const mapContainer = document.getElementById('mapContainer');
         const campusMap = document.getElementById('campusMap');
@@ -465,17 +459,14 @@
         const filterInput = document.getElementById('filterInput');
         const themeToggle = document.getElementById('themeToggle');
 
-        // Variables de estado
         let currentBuilding = null;
         let popupTimeout;
 
-        // Inicializar la aplicación
         function init() {
             renderBuildingsList();
             setupEventListeners();
         }
 
-        // Renderizar la lista de edificios
         function renderBuildingsList(filter = '') {
             buildingsList.innerHTML = '';
             
@@ -496,9 +487,7 @@
                 });
         }
 
-        // Configurar event listeners
         function setupEventListeners() {
-            // Eventos para los elementos de edificio
             buildingsList.addEventListener('click', (e) => {
                 const buildingItem = e.target.closest('.building-item');
                 if (buildingItem) {
@@ -519,21 +508,17 @@
                 hideBuildingPopup();
             });
 
-            // Evento para el botón de volver
             backButton.addEventListener('click', () => {
                 hideBuildingInterior();
             });
 
-            // Evento para el filtro
             filterInput.addEventListener('input', (e) => {
                 renderBuildingsList(e.target.value);
             });
 
-            // Evento para el toggle del tema
             themeToggle.addEventListener('click', toggleTheme);
         }
 
-        // Mostrar popup del edificio
         function showBuildingPopup(buildingId, element) {
             const building = campusData.buildings.find(b => b.id === buildingId);
             if (!building) return;
@@ -541,7 +526,6 @@
             popupTitle.textContent = building.name;
             popupRooms.textContent = `Número de aulas: ${building.rooms}`;
             
-            // Posicionar el popup
             const rect = element.getBoundingClientRect();
             const containerRect = mapContainer.getBoundingClientRect();
             
@@ -550,44 +534,36 @@
             
             buildingPopup.classList.add('active');
             
-            // Limpiar timeout anterior
             if (popupTimeout) clearTimeout(popupTimeout);
         }
 
-        // Ocultar popup del edificio
         function hideBuildingPopup() {
             popupTimeout = setTimeout(() => {
                 buildingPopup.classList.remove('active');
             }, 300);
         }
 
-        // Seleccionar un edificio (hacer clic)
         function selectBuilding(buildingId) {
             const building = campusData.buildings.find(b => b.id === buildingId);
             if (!building) return;
 
             currentBuilding = building;
             
-            // Actualizar elementos activos
             document.querySelectorAll('.building-item').forEach(item => {
                 item.classList.remove('active');
             });
             document.querySelector(`.building-item[data-id="${buildingId}"]`).classList.add('active');
             
-            // Mostrar vista interior del edificio
             showBuildingInterior();
         }
 
-        // Mostrar vista interior del edificio
         function showBuildingInterior() {
             if (!currentBuilding) return;
             
             interiorTitle.textContent = currentBuilding.name;
             
-            // Renderizar salones
             renderClassrooms();
             
-            // Animación de zoom
             campusMap.style.transform = 'scale(1.1)';
             campusMap.style.opacity = '0.7';
             
@@ -598,18 +574,15 @@
             }, 300);
         }
 
-        // Ocultar vista interior del edificio
         function hideBuildingInterior() {
             buildingInterior.classList.remove('active');
             classroomDetails.classList.remove('active');
             
-            // Restablecer elementos activos
             document.querySelectorAll('.building-item').forEach(item => {
                 item.classList.remove('active');
             });
         }
 
-        // Renderizar salones del edificio
         function renderClassrooms() {
             if (!currentBuilding) return;
             
@@ -618,7 +591,6 @@
             
             const classrooms = classData[currentBuilding.id] || [];
             
-            // 7 salones a la izquierda
             for (let i = 0; i < 7; i++) {
                 const classroom = classrooms[i] || { room: `Salón ${i+1}`, className: 'Disponible', teacher: 'Por asignar' };
                 
@@ -633,7 +605,6 @@
                 classroomsLeft.appendChild(classroomElement);
             }
             
-            // 6 salones a la derecha
             for (let i = 7; i < 13; i++) {
                 const classroom = classrooms[i] || { room: `Salón ${i+1}`, className: 'Disponible', teacher: 'Por asignar' };
                 
@@ -649,7 +620,6 @@
             }
         }
 
-        // Mostrar detalles del salón
         function showClassroomDetails(e) {
             const room = e.target.dataset.room;
             const className = e.target.dataset.className;
@@ -662,7 +632,6 @@
             classroomDetails.classList.add('active');
         }
 
-        // Cambiar entre modo claro y oscuro
         function toggleTheme() {
             const currentTheme = document.body.getAttribute('data-theme');
             if (currentTheme === 'dark') {
@@ -674,7 +643,6 @@
             }
         }
 
-        // Inicializar la aplicación cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>

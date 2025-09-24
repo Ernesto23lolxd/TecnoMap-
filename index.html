@@ -6,7 +6,7 @@
     <title>Mapa Interactivo del Campus</title>
     <style>
         body {
-            overflow: hidden; /* Evita barras de scroll durante la animación */
+            overflow: hidden; 
         }
         .map-container {
             position: relative;
@@ -17,9 +17,9 @@
             transition: transform 1s ease-in-out;
         }
 
-        /* CAMBIO AQUÍ: Corregido para moverlo un poco abajo y a la IZQUIERDA */
+   
         .map-container.zoom-in {
-            /* Antes: translate(5%, 15%) */
+      
             transform: scale(2.5) translate(-5%, 15%);
         }
 
