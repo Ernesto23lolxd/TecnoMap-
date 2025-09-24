@@ -99,8 +99,8 @@
             { time: '10:00-12:00', name: 'Residencias Profesionales', teacher: 'Varios' },
             { time: '12:00-14:00', name: 'Servicio Social', teacher: 'Varios' }
         ],
-        // Nota: Para 'MAESTROS', no hay horarios definidos en el original, por lo que el modal mostrará "No hay clases programadas para hoy."
-        'MAESTROS': [] // Vacío para simular sin clases
+       
+        'MAESTROS': [] 
     };
 
     var modal = document.getElementById("infoModal");
@@ -120,49 +120,48 @@
         scheduleHtml += '</table>';
         scheduleContainer.innerHTML = scheduleHtml;
         modal.style.display = "block";
-        modal.setAttribute('aria-hidden', 'false'); // Mejora de accesibilidad
-        document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        modal.setAttribute('aria-hidden', 'false'); 
+        document.body.style.overflow = 'hidden'; 
     }
 
     function closeModal() {
         modal.style.display = "none";
         modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = ''; // Restaurar scroll
+        document.body.style.overflow = ''; 
     }
 
-    // Cerrar modal al hacer clic fuera de él
+   
     window.onclick = function(event) {
         if (event.target == modal) {
             closeModal();
         }
     };
 
-    // Cerrar modal con tecla Escape (mejora de accesibilidad)
+    
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' && modal.style.display === 'block') {
             closeModal();
         }
     });
 
-    // Script para la animación de bajada al hacer clic en las escaleras
+    
     const stairsLinkDown = document.getElementById('stairs-down-link');
 
     if (stairsLinkDown) {
         stairsLinkDown.addEventListener('click', function(event) {
-            // Prevenir la navegación inmediata
+            
             event.preventDefault();
             
-            // Aplicar la clase de animación al body
+            
             document.body.classList.add('slide-down');
 
-            // Esperar a que termine la animación (700ms) y luego cambiar de página
             setTimeout(function() {
                 window.location.href = stairsLinkDown.href;
             }, 700);
         });
     }
 
-    // Mejora: Permitir navegación por teclado en las aulas y oficinas
+    
     document.querySelectorAll('.classroom, .office-container').forEach(element => {
         element.addEventListener('keydown', function(event) {
             if (event.key === 'Enter' || event.key === ' ') {
@@ -171,8 +170,9 @@
                     const classroomId = this.querySelector('.room-number').textContent;
                     showModal(classroomId);
                 }
-                // Para oficinas, podrías agregar lógica adicional si es necesario
+                
             }
         });
     });
+
 </script>
