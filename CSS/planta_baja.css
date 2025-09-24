@@ -17,7 +17,7 @@
         }
 
         body {
-            /* CAMBIO AQUÍ: Se aplicó el fondo degradado */
+           
             background: linear-gradient(135deg, var(--primary-color) 0%, #8b0404 100%);
             font-family: 'Poppins', sans-serif;
             color: var(--text-dark);
@@ -217,4 +217,5 @@
             color: var(--primary-color);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px var(--shadow-light);
+
         }
