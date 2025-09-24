@@ -1,0 +1,51 @@
+ body {
+            overflow: hidden; 
+            background-color: #5a0202;
+        }
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            font-family: sans-serif;
+            transition: transform 1s ease-in-out;
+        }
+
+   
+        .map-container.zoom-in {
+      
+            transform: scale(2.5) translate(-5%, 15%);
+        }
+
+        .map-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hotspot {
+            position: absolute;
+            display: block;
+        }
+
+        .hotspot .popup-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 110%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .hotspot:hover .popup-text {
+            visibility: visible;
+            opacity: 1;
+        }
